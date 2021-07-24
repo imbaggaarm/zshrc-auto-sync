@@ -1,7 +1,7 @@
 # ZSH Run Configuration Auto Sync
-This repository will help you to ultilize `fswatch` and `launchd` in order to get your ZSH run configuration (.zshrc) synced with git remote repository automatically.
+This repository will help you to utilize `fswatch` and `launchd` in order to get your ZSH run configuration (.zshrc) synced with the git remote repository automatically.
 
-## Simple setup
+## Quick Start
 Follow these steps to automatically sync your `.zshrc` with the remote repository.
 
 1. **Install required tools**
@@ -39,7 +39,7 @@ Follow these steps to automatically sync your `.zshrc` with the remote repositor
         ```
         ./sync_zshrc.sh
         ```
-    3. Change the content of `~/.zshrc` or `~/.zsh/` and check whether new changes are commited and pushed to the remote repository.
+    3. Change the content of `~/.zshrc` or `~/.zsh/` and check whether new changes are committed and pushed to the remote repository.
 
 5. **Modify launchd property list file (com.[username].auto-sync-zshrc.plist)**
     - Replace `imbaggaarm` with the username in your local machine.
@@ -58,11 +58,11 @@ Follow these steps to automatically sync your `.zshrc` with the remote repositor
         ```
         brew install --cask launchcontrol
         ```
-    - If you open the LaunchControl application and see all fields are green in `com.<username>.auto-sync-zshrc.plist` then congratulations, now all of your zsh run configurations are synced automatically with the remote repository. Example:
+    - If you open the LaunchControl application and see all fields are green in `com.<username>.auto-sync-zshrc.plist` then congratulations, now all of your ZSH run configurations are synced automatically with the remote repository. Example:
     ![image](./launch_control.png)
     Notes: Remember to select `UserAgents` in the top left button of the LaunchControl application.
 7. **Verify that our scripts are working properly**
-    - Change `~/.zshrc` or `~/.zsh/` and verify that our changes are commited and pushed automatically to the remote repository.
+    - Change `~/.zshrc` or `~/.zsh/` and verify that our changes are committed and pushed automatically to the remote repository.
 
 ## Tokens, Credentials, Secrets
-- You should store your private tokens, secrets in other files, such as `secrets.sh`, and load them by adding `source secrets.sh` into `.zshrc` file. Even though our repository are private, but you might accidentally publish it or in case Github is hacked, your credentials won't be leaked.
+- You should store your private tokens, secrets in other files, such as `secrets.sh`, and load them by adding `source secrets.sh` into `.zshrc` file. Even though our repository is private, but you might accidentally publish it or in case Github is hacked, your credentials won't be leaked.
