@@ -2,13 +2,14 @@
 This repository will help you to ultilize `fswatch` and `launchd` in order to get your ZSH run configuration (.zshrc) synced with git remote repository automatically.
 
 ## Simple setup
-Follow these steps to automatically sync your .zshrc with the remote repository.
+Follow these steps to automatically sync your `.zshrc` with the remote repository.
 
 1. **Install required tools**
-    - fswatch: For detecting file changes, install it using Homebrew
-        ```
-        brew install fswatch
-        ```
+    
+    fswatch: For detecting file changes, install it using Homebrew
+    ```
+    brew install fswatch
+    ```
 2. **Create git repository**
     ```shell
     mkdir ~/code && mkdir ~/code/zsh-backup && cd ~/code/zsh-backup
@@ -60,3 +61,8 @@ Follow these steps to automatically sync your .zshrc with the remote repository.
     - If you open the LaunchControl application and see all fields are green in `com.<username>.auto-sync-zshrc.plist` then congratulations, now all of your zsh run configurations are synced automatically with the remote repository. Example:
     ![image](./launch_control.png)
     Notes: Remember to select `UserAgents` in the top left button of the LaunchControl application.
+7. **Verify that our scripts are working properly**
+    - Change `~/.zshrc` or `~/.zsh/` and verify that our changes are commited and pushed automatically to the remote repository.
+
+## Tokens, Credentials, Secrets
+- You should store your private tokens, secrets in other files, such as `secrets.sh`, and load them by adding `source secrets.sh` into `.zshrc` file. Even though our repository are private, but you might accidentally publish it or in case Github is hacked, your credentials won't be leaked.
