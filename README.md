@@ -22,14 +22,16 @@ Follow these steps to automatically sync your `.zshrc` with the remote repositor
     ```
     Remember to set the repo's visibility to **Private**.
 3. **Copy necessary files**
-    - You should clone this repository and copy 3 files into `zsh-backup` folder:
+    1. You should clone this repository and copy 3 files into `zsh-backup` folder:
         - [commit_changes.sh](./commit_changes.sh)
         - [sync_zshrc.sh](./sync_zshrc.sh)
         - [com.imbaggaarm.auto-sync-zshrc.plist](./com.imbaggaarm.auto-sync-zshrc.plist)
-    - Make scripts executable:
+    2. Make scripts executable:
         ```
         chmod +x commit_changes.sh && sync_zshrc.sh
         ```
+    3. Modify fswatch absolute path:
+        - Use `which fswatch` to get the absolute path of `fswatch` and replace `/opt/homebrew/bin/fswatch` in `sync_zshrc.sh` with the result.
 4. **Verify the scripts**
     1. Navigate the `zsh-backup` directory
         ```
@@ -42,23 +44,25 @@ Follow these steps to automatically sync your `.zshrc` with the remote repositor
     3. Change the content of `~/.zshrc` or `~/.zsh/` and check whether new changes are committed and pushed to the remote repository.
 
 5. **Modify launchd property list file (com.[username].auto-sync-zshrc.plist)**
-    - Replace `imbaggaarm` with the username in your local machine.
-    - Replace `/Users/eastagile/` to the home directory of your logged in user.
-    - For **StandardOutPath** and **StandardErrorPath** in the **.plist**, you can use whatever you want, but please remember to make sure that the paths are existed (create if they are not) and your user has enough permissions to modify the files.
+    1. Replace `imbaggaarm` with the username in your local machine.
+    2. Replace `/Users/eastagile/` to the home directory of your logged in user.
+    
+        Notes: For **StandardOutPath** and **StandardErrorPath** in the **.plist**, you can use whatever you want, but please remember to make sure that the paths are existed (create if they are not) and your user has enough permissions to modify the files.
 6. **Make sync_zshrc run as a background service**
-    - Copy `com.<username>.auto-sync-zshrc.plist` to `~/Library/LaunchAgents/`:
+    1. Copy `com.<username>.auto-sync-zshrc.plist` to `~/Library/LaunchAgents/`:
         ```
         cp com.<username>.auto-sync-zshrc.plist ~/Library/LaunchAgents/
         ```
-    - Start the service:
+    2. Navigate to `~/Library/LaunchAgents/` and start the service:
         ```
         launchctl load com.<username>.auto-sync-zshrc.plist
         ```
-    - You can check files at `StandardErrorPath` and `StandardOutPath` to debug if there is anything wrong. In that case, I suggest you use LaunchControl for easier debugging. You can install it using Homebrew Cask:
+        - If you get `Load failed: 5: Input/output error`, please check if the **.plist** file is in the correct format and you are in the right directory.
+    3. You can check files at `StandardErrorPath` and `StandardOutPath` to debug if there is anything wrong. In that case, I suggest you use LaunchControl for easier debugging. You can install it using Homebrew Cask:
         ```
         brew install --cask launchcontrol
         ```
-    - If you open the LaunchControl application and see all fields are green in `com.<username>.auto-sync-zshrc.plist` then congratulations, now all of your ZSH run configurations are synced automatically with the remote repository. Example:
+    4. If you open the LaunchControl application and see all fields are green in `com.<username>.auto-sync-zshrc.plist` then congratulations, now all of your ZSH run configurations are synced automatically with the remote repository. Example:
     ![image](./launch_control.png)
     Notes: Remember to select `UserAgents` in the top left button of the LaunchControl application.
 7. **Verify that our scripts are working properly**
