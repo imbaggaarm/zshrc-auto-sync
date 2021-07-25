@@ -1,6 +1,8 @@
 # ZSH Run Configuration Auto Sync
 This repository will help you to utilize `fswatch` and `launchd` in order to get your ZSH run configuration (.zshrc) synced with the git remote repository automatically.
 
+If you want to deeply understand how it works, you should read this article: [Medium - Organize and Auto Back Up Your ZSH Run Configuration](https://medium.com/@imbaggaarm/organize-and-auto-back-up-your-zshrc-files-to-github-364a262b3227)
+
 ## Quick Start
 Follow these steps to automatically sync your `.zshrc` with the remote repository.
 
