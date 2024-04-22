@@ -30,7 +30,7 @@ Follow these steps to automatically sync your `.zshrc` with the remote repositor
         - [com.imbaggaarm.auto-sync-zshrc.plist](./com.imbaggaarm.auto-sync-zshrc.plist)
     2. Make scripts executable:
         ```shell
-        chmod +x commit_changes.sh && sync_zshrc.sh
+        chmod +x commit_changes.sh && chmod +x sync_zshrc.sh
         ```
     3. Modify fswatch absolute path:
         - Use `which fswatch` to get the absolute path of `fswatch` and replace `/opt/homebrew/bin/fswatch` in `sync_zshrc.sh` with the result.
